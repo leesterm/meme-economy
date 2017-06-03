@@ -9,8 +9,10 @@
 <table id="top-memes">
 	<% @memes.each do |m| %>
 		<tr>
-			<td><%= image_tag(m.img,class:'meme')%></td>
+			<td>
+				<%= link_to image_tag(m.img,class:'meme'), m%>
+					
+			</td>
 		</tr>
-				
 	<% end %>
 </table>
