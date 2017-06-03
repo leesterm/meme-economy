@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Allow Cross Origin Requests
+gem 'rack-cors'
 # Use Postgresql for app
 gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
