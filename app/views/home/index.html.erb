@@ -7,20 +7,10 @@
 	Top Daily Memes:
 </h1>
 <table id="top-memes">
-	<tr>
-		<td>Pepe le Pew</td>
-		<td>
-			<img src=''/>
-		</td>
-	</tr>
-	<tr>
-		<td>Rage Pepe</td>
-	</tr>
-	<tr>
-		<td>Eclipse Pepe</td>
-	</tr>
-	<tr>
-		<td>Cosmic Eclipse Pepe</td>
-	</tr>
-	
+	<% @memes.each do |m| %>
+		<tr>
+			<td><%= image_tag(m.img,class:'meme')%></td>
+		</tr>
+				
+	<% end %>
 </table>
