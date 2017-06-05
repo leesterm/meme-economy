@@ -12,3 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+// For charts
+//= require loader
+//= require chartkick

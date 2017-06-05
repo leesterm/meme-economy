@@ -1,10 +1,9 @@
 // Since turbolinks caches js, we must handle load instead of document ready
 //$(document).on("turbolinks:load",function(){
-$(document).ready(function(){
+/*$(document).ready(function(){
   //$('#trend').css( "border", "3px solid red" );
   $.ajax({
-    url: "http://www.google.com/trends/fetchComponent",
-    //url: "http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html",
+    //url: "http://www.google.com/trends/fetchComponent",
     type: 'GET',
     hl: 'en-US',
     q: ['pepe'],
@@ -17,4 +16,4 @@ $(document).ready(function(){
       $('body').append("AJAX Error: "+textStatus);
     }
   })
-});
+});*/

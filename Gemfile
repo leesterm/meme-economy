@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# ChartKicks for trend graphs
+gem "chartkick"
 # Allow Cross Origin Requests
 gem 'rack-cors'
 # Use Postgresql for app
