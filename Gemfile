@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 # ChartKicks for trend graphs
 gem "chartkick"
+# Groupdate as helper for ChartKicks
+gem 'groupdate'
 # Allow Cross Origin Requests
 gem 'rack-cors'
 # Use Postgresql for app

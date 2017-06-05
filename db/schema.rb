@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603055735) do
+ActiveRecord::Schema.define(version: 20170605063425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "meme_prices", force: :cascade do |t|
+    t.integer  "meme_id"
+    t.float    "price"
+    t.date     "closing_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "meme_prices", ["meme_id"], name: "index_meme_prices_on_meme_id", using: :btree
 
   create_table "memes", force: :cascade do |t|
     t.string   "name"
@@ -24,4 +34,5 @@ ActiveRecord::Schema.define(version: 20170603055735) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "meme_prices", "memes"
 end

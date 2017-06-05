@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Meme_id: 
+  price: 1.5
+  closing_date: 2017-06-05
+
+two:
+  Meme_id: 
+  price: 1.5
+  closing_date: 2017-06-05
