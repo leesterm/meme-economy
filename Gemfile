@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Devise for users
+gem 'devise'
 # ChartKicks for trend graphs
 gem "chartkick"
 # Groupdate as helper for ChartKicks
