@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'users/registrations'}
 
   get 'home/index'
-  resources :meme
+  # Add meme resource with default HTTP methods and buy/sell
+  resources :meme do
+      member do
+        post 'buy'
+        post 'sell'
+      end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

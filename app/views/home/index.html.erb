@@ -6,6 +6,7 @@
 <h1>
 	Top Daily Memes:
 </h1>
+<%= link_to 'View all memes', meme_index_path %>
 <div id="top-memes">
 	<% @memes.each do |m| %>
 				<%= link_to image_tag(m.img,class:'meme'), m%>
