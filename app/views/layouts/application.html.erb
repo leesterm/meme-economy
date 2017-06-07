@@ -12,12 +12,12 @@
   <ul>
     <li>Hey, <%= current_user.email %></li>
     <li>Balance: <%= current_user.balance%> </li>
+    <li><%= link_to 'View holdings', user_userholdings_path(user_id: current_user.id)%></li>
   </ul>
 <% else %>
   <%= link_to 'Login', new_user_session_path, method: :get %>
   <%= link_to 'Register', new_user_registration_path, method: :get %>
 <% end %>
-
 
 <%= link_to root_path do%>
   <h1>HOME</h1>

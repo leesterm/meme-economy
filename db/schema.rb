@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607200324) do
+ActiveRecord::Schema.define(version: 20170607213908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20170607200324) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "user_holdings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "meme_id"
+    t.integer  "amt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_holdings", ["meme_id"], name: "index_user_holdings_on_meme_id", using: :btree
+  add_index "user_holdings", ["user_id"], name: "index_user_holdings_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
     t.string   "encrypted_password",     default: "",  null: false
@@ -54,4 +65,6 @@ ActiveRecord::Schema.define(version: 20170607200324) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "meme_prices", "memes"
+  add_foreign_key "user_holdings", "memes"
+  add_foreign_key "user_holdings", "users"
 end

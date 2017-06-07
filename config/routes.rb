@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
-  # Specify users as devise model and custom controllers for additional actions
-  devise_for :users, controllers: {registrations: 'users/registrations'}
+  get 'user_holdings/index'
+
+  get 'user_holdings/create'
+
+  get 'user_holdings/index'
 
   get 'home/index'
+
+  # Specify users as devise model and custom controllers for additional actions
+  devise_for :users, controllers: {registrations: 'users/registrations'}
+  # User has meme stocks
+  resources :users, only:[] do
+    resources :userholdings, only: [:index,:create], controller: :user_holdings
+  end
+
   # Add meme resource with default HTTP methods and buy/sell
   resources :meme do
       member do

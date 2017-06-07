@@ -1,0 +1,2 @@
+module UserHoldingsHelper
+end
