@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # Specify users as devise model and custom controllers for additional actions
+  devise_for :users, controllers: {registrations: 'users/registrations'}
 
   get 'home/index'
   resources :meme

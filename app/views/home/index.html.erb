@@ -6,13 +6,8 @@
 <h1>
 	Top Daily Memes:
 </h1>
-<table id="top-memes">
+<div id="top-memes">
 	<% @memes.each do |m| %>
-		<tr>
-			<td>
 				<%= link_to image_tag(m.img,class:'meme'), m%>
-
-			</td>
-		</tr>
 	<% end %>
-</table>
+</div>

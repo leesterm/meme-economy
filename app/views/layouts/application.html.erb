@@ -7,13 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <!-- Flash messages for Devise -->
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<% if user_signed_in? %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete%>
+  <ul>
+    <li>Hey, <%= current_user.email %></li>
+    <li>Balance: <%= current_user.balance%> </li>
+  </ul>
+<% else %>
+  <%= link_to 'Login', new_user_session_path, method: :get %>
+  <%= link_to 'Register', new_user_registration_path, method: :get %>
+<% end %>
+
 
 <%= link_to root_path do%>
   <h1>HOME</h1>
 <% end %>
+
+<!-- Flash messages for Devise -->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>
