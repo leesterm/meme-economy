@@ -1,5 +1,6 @@
 class Meme < ActiveRecord::Base
   has_many :userholdings
+  has_many :votes
 
   def upvote
     self.up += 1;
