@@ -22,4 +22,16 @@ class MemeController < ApplicationController
     # sell
     redirect_to meme_index_path
   end
+  
+  def upvote
+    @meme = Meme.find(params[:id])
+    @meme.upvote()
+    redirect_to :back
+  end
+
+  def downvote
+    @meme = Meme.find(params[:id])
+    @meme.downvote()
+    redirect_to :back
+  end
 end

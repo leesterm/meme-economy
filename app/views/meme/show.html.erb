@@ -1,33 +1,39 @@
 <%= javascript_include_tag 'meme', 'data-turbolinks-track' => false%>
 <%= image_tag @meme.img%>
 <h1><%= @meme.name %></h1>
+<div id="meme-score">
+  <h2>Score: <%= @meme.score() %></h2>
+  <%= button_to 'Upvote', upvote_meme_path%>
+  <%= button_to 'Downvote', downvote_meme_path%>
+</div>
 
-<% if @prices.size() >0 %>
-  <div id='meme-info'>
-    <ul>
-      <li>Last Price: $<%= @prices.last[1]%> (as of <%= @prices.last[0]%>)</li>
-      <li>Today's Change: </li>
-      <li>Volume: </li>
-      <li>Bid Size: $<%= @prices.last[1]%>x(some bid amount)</br>
-          <!--<input type="text" value="0.0"></input>-->
-          <label for ="buy_amt">Buy Amount: </label>
-          <%= text_field_tag :buy_amt , 0.0%>
-          <button>+</button>
-          <button>-</button>
-          <%= button_to 'BUY', buy_meme_path, form_class: "buy-meme"%>
-      </li>
-      <li>Current holdings:</br>
-          <input type="text" value="0.0"></input>
-          <button>+</button>
-          <button>-</button>
-          <%= button_to 'SELL', sell_meme_path, form_class: "sell-meme"%>
-      </li>
-    </ul>
-  </div>
+<div id='meme-info'>
+  <% if @prices.size() > 0 %>
+      <ul>
+        <li>Last Price: $<%= @prices.last[1]%> (as of <%= @prices.last[0]%>)</li>
+        <li>Today's Change: </li>
+        <li>Volume: </li>
+        <li>Bid Size: $<%= @prices.last[1]%>x(some bid amount)</br>
+            <!--<input type="text" value="0.0"></input>-->
+            <label for ="buy_amt">Buy Amount: </label>
+            <%= text_field_tag :buy_amt , 0.0%>
+            <button>+</button>
+            <button>-</button>
+            <%= button_to 'BUY', buy_meme_path, form_class: "buy-meme"%>
+        </li>
+        <li>Current holdings:</br>
+            <input type="text" value="0.0"></input>
+            <button>+</button>
+            <button>-</button>
+            <%= button_to 'SELL', sell_meme_path, form_class: "sell-meme"%>
+        </li>
+      </ul>
 
-  <div id='trend'>
-    <%= line_chart @prices%>
-  </div>
-<% else %>
-  <h1>No Meme info.</h1>
-<% end %>
+    <div id='trend'>
+      <%= line_chart @prices%>
+    </div>
+
+  <% else %>
+    <h1>No Meme info.</h1>
+  <% end %>
+</div>

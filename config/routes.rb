@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       member do
         post 'buy'
         post 'sell'
+        post 'upvote'
+        post 'downvote'
       end
   end
 
