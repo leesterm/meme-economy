@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608201021) do
+ActiveRecord::Schema.define(version: 20170609023924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170608201021) do
     t.datetime "updated_at",              null: false
     t.integer  "up",          default: 0
     t.integer  "down",        default: 0
+    t.integer  "volume"
   end
 
   create_table "user_holdings", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170608201021) do
     t.integer  "amt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "buy_price"
   end
 
   add_index "user_holdings", ["meme_id"], name: "index_user_holdings_on_meme_id", using: :btree

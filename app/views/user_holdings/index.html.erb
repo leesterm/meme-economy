@@ -1,2 +1,23 @@
-<h1>UserHoldings#index</h1>
-<p>Find me in app/views/user_holdings/index.html.erb</p>
+<h1>Your Meme Porfolio</h1>
+<table id="user-portfolio">
+  <tr>
+    <td></td>
+    <td>Date</td>
+    <td>Meme</td>
+    <td>Volume</td>
+    <td>Buy Price</td>
+    <td>Current Price</td>
+    <td>Gain/Loss</td>
+  </tr>
+  <% @user_holdings.each do |u| %>
+  <tr>
+      <td><%= image_tag u.meme.img%></td>
+      <td><%= u.updated_at%></td>
+      <td><%= u.meme.name%></td>
+      <td><%= u.amt%></td>
+      <td><%= u.buy_price%></td>
+      <td><%= u.meme.most_recent_price.price%></td>
+      <td><%= u.meme.price_difference(u.buy_price)%></td>
+  </tr>
+  <% end %>
+</table>

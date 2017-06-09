@@ -12,14 +12,16 @@
       <ul>
         <li>Last Price: $<%= @prices.last[1]%> (as of <%= @prices.last[0]%>)</li>
         <li>Today's Change: </li>
-        <li>Volume: </li>
+        <li>Volume: <%= @meme.volume%></li>
         <li>Bid Size: $<%= @prices.last[1]%>x(some bid amount)</br>
             <!--<input type="text" value="0.0"></input>-->
-            <label for ="buy_amt">Buy Amount: </label>
-            <%= text_field_tag :buy_amt , 0.0%>
-            <button>+</button>
-            <button>-</button>
-            <%= button_to 'BUY', buy_meme_path, form_class: "buy-meme"%>
+            <%= form_tag(controller: "meme", action: "buy", method: "post", class: "buy-meme") do %>
+              <%= label_tag :buy_amt, 'Buy Amount:'%>
+              <%= submit_tag '+', type: 'button'%>
+              <%= submit_tag '-', type: 'button'%>
+              <%= text_field_tag :buy_amt , 1.0%>
+              <%= submit_tag 'BUY' %>
+            <% end %>
         </li>
         <li>Current holdings:</br>
             <input type="text" value="0.0"></input>
@@ -29,9 +31,9 @@
         </li>
       </ul>
 
-    <div id='trend'>
-      <%= line_chart @prices%>
-    </div>
+      <div id='trend'>
+        <%= line_chart @prices%>
+      </div>
 
   <% else %>
     <h1>No Meme info.</h1>
