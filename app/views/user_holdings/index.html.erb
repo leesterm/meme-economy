@@ -11,7 +11,7 @@
   </tr>
   <% @user_holdings.each do |u| %>
   <tr>
-      <td><%= image_tag u.meme.img%></td>
+      <td><%= link_to image_tag(u.meme.img, class:'meme'), u.meme%></td>
       <td><%= u.updated_at%></td>
       <td><%= u.meme.name%></td>
       <td><%= u.amt%></td>

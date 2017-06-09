@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609023924) do
+ActiveRecord::Schema.define(version: 20170609031817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 20170609023924) do
     t.integer  "down",        default: 0
     t.integer  "volume"
   end
+
+  create_table "transaction_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "meme_id"
+    t.integer  "amt"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "action"
+  end
+
+  add_index "transaction_logs", ["meme_id"], name: "index_transaction_logs_on_meme_id", using: :btree
+  add_index "transaction_logs", ["user_id"], name: "index_transaction_logs_on_user_id", using: :btree
 
   create_table "user_holdings", force: :cascade do |t|
     t.integer  "user_id"
@@ -78,6 +91,8 @@ ActiveRecord::Schema.define(version: 20170609023924) do
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
   add_foreign_key "meme_prices", "memes"
+  add_foreign_key "transaction_logs", "memes"
+  add_foreign_key "transaction_logs", "users"
   add_foreign_key "user_holdings", "memes"
   add_foreign_key "user_holdings", "users"
   add_foreign_key "votes", "memes"

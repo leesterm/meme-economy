@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  meme_id: 
+  amt: 1
+  price: 1.5
+
+two:
+  user: 
+  meme_id: 
+  amt: 1
+  price: 1.5
