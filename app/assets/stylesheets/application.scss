@@ -20,11 +20,8 @@
  body {
      line-height: 1.8;
      letter-spacing: 4px;
-     background-color: #c3f2e3
- }
- .container-fluid {
-     padding-top: 70px;
-     padding-bottom: 70px;
+     //background-color: #c3f2e3
+     background-color:white;
  }
  .navbar {
      padding-top: 15px;
@@ -49,4 +46,9 @@
  }
  .top-meme{
    width:100%;
+ }
+
+ #meme-text{
+  padding-top: 10px;
+  padding-bottom: 2px;
  }

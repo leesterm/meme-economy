@@ -5,7 +5,7 @@ class Meme < ActiveRecord::Base
 
   def buy(buy_amt, user)
     if buy_amt <= self.volume
-      price = most_recent_price().price
+      price = current_price().price
       cost = price*buy_amt
       if user.balance >= cost
         %% TODO: Make user portfolio have unique entries for each meme option(what if they're different prices though when u buy 1st and 2nd time)%
@@ -28,7 +28,7 @@ class Meme < ActiveRecord::Base
     puts "asdfasdfasDF:"+user_meme_volume.to_s
     #if sell_amt <
       #transaction_log = TransactionLog.create(user_id: user.id, meme_id: self.id, amt: buy_amt, price: price, action: 'sell')
-    total = sell_amt*most_recent_price().price
+    total = sell_amt*current_price().price
 
   end
 
@@ -46,12 +46,16 @@ class Meme < ActiveRecord::Base
     return self.up-self.down
   end
 
-  def most_recent_price
+  def current_price
     return MemePrice.where(meme_id: self.id).last()
   end
 
+  def previous_price
+    return MemePrice.where(meme_id: self.id)[-2]
+  end
+
   def price_difference(p)
-    return (most_recent_price().price-p)/p
+    return (current_price().price-p)/p
   end
 
 end

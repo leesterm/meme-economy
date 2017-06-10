@@ -20,7 +20,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav navbar-nav">
-      <!--<li class="nav-item active">-->
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'LOGOUT', destroy_user_session_path, class:"nav-link", method: :delete%>
@@ -59,8 +58,17 @@
   <%= notice%>
 </div>
 
-<br/>
 <%= yield %>
+
+<hr>
+<footer class="footer text-muted">
+  <blockquote class="blockquote">
+		<!--<h2>"With dank memes, comes great responsbility"-Albert Einstein 1727</br></h2>-->
+		<!--<h2> Steel beams can't melt dank memes.</h2>-->
+		<p class="mb-0">"If you gaze long into the memes, the memes also gaze into you."</p>
+		<footer class="blockquote-footer">Nietzsche</footer>
+  </blockquote>
+</footer>
 
 </body>
 </html>
