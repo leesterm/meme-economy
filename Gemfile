@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+# Bootstrap
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 # Devise for users
 gem 'devise'
 # ChartKicks for trend graphs

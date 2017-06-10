@@ -16,3 +16,8 @@
 // For charts
 //= require loader
 //= require chartkick
+
+// For Bootstrap dependencies
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets

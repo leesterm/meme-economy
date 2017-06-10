@@ -1,14 +1,31 @@
-<h1>Welcome to the Meme Economy</h1>
-<h2>
-	"With dank memes, comes great responsbility"-Albert Einstein 1727</br>
-	Here in the Meme Economy, you can buy, sell, invest, and track memes and MemeMagic<sup>TM</sup>
-</h2>
-<h1>
-	Top Daily Memes:
-</h1>
-<%= link_to 'View all memes', meme_index_path %>
-<div id="top-memes">
-	<% @memes.each do |m| %>
-				<%= link_to image_tag(m.img,class:'meme'), m%>
-	<% end %>
+<div class="container">
+	<header class="jumbotron hero-spacer">
+			<!--<h2>"With dank memes, comes great responsbility"-Albert Einstein 1727</br></h2>-->
+			<h2> Steel beams can't melt dank memes.</h2>
+			<!--<h2>If you gaze long into the memes, the memes also gaze into you.</h2>-->
+			<h2> Here in the Meme Economy, you can buy, sell, invest, and track memes using meme magic.</h2>
+  </header>
+	<hr>
+	<div class="row">
+		<div class="col-lg-12">
+			<h2>Top Daily Memes:</h2>
+		</div>
+	</div>
+	<div class="row text-right">
+		<div class="col-lg-12">
+			<%= link_to 'View all memes', meme_index_path %>
+		</div>
+	</div>
+	<div class="row" id="top-memes">
+		<% @memes.each do |m| %>
+		<div class="col-md-3 col-sm-6">
+			<div class="thumbnail  frontpage-meme rounded">
+				<%= link_to image_tag(m.img, class:'top-meme'), m%>
+				<div class="caption">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </div>

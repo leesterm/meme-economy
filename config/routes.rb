@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'user_holdings/index'
 
   get 'home/index'
+  get 'home/about'
 
   # Specify users as devise model and custom controllers for additional actions
   devise_for :users, controllers: {registrations: 'users/registrations'}

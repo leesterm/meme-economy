@@ -1,23 +1,28 @@
-<h1>Your Meme Porfolio</h1>
-<table id="user-portfolio">
-  <tr>
-    <td></td>
-    <td>Date</td>
-    <td>Meme</td>
-    <td>Volume</td>
-    <td>Buy Price</td>
-    <td>Current Price</td>
-    <td>Gain/Loss</td>
-  </tr>
-  <% @user_holdings.each do |u| %>
-  <tr>
-      <td><%= link_to image_tag(u.meme.img, class:'meme'), u.meme%></td>
-      <td><%= u.updated_at%></td>
-      <td><%= u.meme.name%></td>
-      <td><%= u.amt%></td>
-      <td><%= u.buy_price%></td>
-      <td><%= u.meme.most_recent_price.price%></td>
-      <td><%= u.meme.price_difference(u.buy_price)%></td>
-  </tr>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Your Meme Porfolio</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @user_holdings.each do |u| %>
+    <div class="col-lg-3 col-md-3 col-sm-4 portfolio-meme">
+			<div class="thumbnail">
+        <%= link_to image_tag(u.meme.img, class:'top-meme'), u.meme%>
+        <div class="caption">
+          <ul class="list-group">
+            <li class="list-group-item active"><%= link_to u.meme.name, u.meme%></li>
+            <li class="list-group-item"><%= u.updated_at%></li>
+            <li class="list-group-item"><%= u.amt%></li>
+            <li class="list-group-item"><%= u.buy_price%></li>
+            <li class="list-group-item"><%= u.meme.most_recent_price.price%></li>
+            <li class="list-group-item"><%= u.meme.price_difference(u.buy_price)%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>
