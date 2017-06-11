@@ -5,10 +5,20 @@ class MemeController < ApplicationController
   end
 
   def new
-    @meme = Meme.new
+    @meme = Meme.new()
   end
-  
+
   def create
+    puts meme_params
+    puts meme_params
+    puts meme_params
+    @meme = Meme.new(meme_params)
+    @meme.up = 1
+    @meme.down = 0
+    @meme.volume = 1000000
+    @meme.user_id = current_user.id
+    @meme.save
+    redirect_to root_path
   end
 
   def show
@@ -75,6 +85,10 @@ class MemeController < ApplicationController
         end
       end
       return false
+    end
+
+    def meme_params()
+      params.require(:meme).permit(:name, :description, :img)
     end
 
 end
