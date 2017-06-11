@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   get 'user_holdings/index'
-
   get 'user_holdings/create'
-
-  get 'user_holdings/index'
 
   get 'home/index'
   get 'home/about'
@@ -13,17 +10,20 @@ Rails.application.routes.draw do
   # User has meme stocks
   resources :users, only:[] do
     resources :userholdings, only: [:index,:create], controller: :user_holdings
+    resources :memes, only: [:new, :create], controller: :meme
   end
 
-  # Add meme resource with default HTTP methods and buy/sell
-  resources :meme do
-      member do
-        post 'buy'
-        post 'sell'
-        post 'upvote'
-        post 'downvote'
-      end
+  resources :meme, only:[] do
+    member do
+      post :buy
+      post :sell
+      post :upvote
+      post :downvote
+    end
   end
+
+  resources :meme ,only:[:index, :show]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

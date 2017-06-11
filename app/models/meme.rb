@@ -1,4 +1,5 @@
 class Meme < ActiveRecord::Base
+  belongs_to :user
   has_many :userholdings
   has_many :transactionlogs
   has_many :votes

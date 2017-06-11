@@ -1,7 +1,14 @@
 class MemeController < ApplicationController
-  before_action :authenticate_user!, only: [:buy, :sell, :upvote, :downvote]
+  before_action :authenticate_user!, only: [:create, :buy, :sell, :upvote, :downvote]
   def index
     @memes = Meme.all
+  end
+
+  def new
+    @meme = Meme.new
+  end
+  
+  def create
   end
 
   def show
