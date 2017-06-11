@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611000310) do
+ActiveRecord::Schema.define(version: 20170611014638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20170611000310) do
   add_index "meme_prices", ["meme_id"], name: "index_meme_prices_on_meme_id", using: :btree
 
   create_table "memes", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "img"
+    t.string   "name",                    null: false
+    t.string   "description",             null: false
+    t.string   "img",                     null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "up",          default: 0
