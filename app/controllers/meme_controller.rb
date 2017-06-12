@@ -41,6 +41,7 @@ class MemeController < ApplicationController
       redirect_to user_portfolios_path(current_user.id)
     else
       flash[:notice] = 'Failed to buy'
+      @alert = true
       redirect_to meme_path
     end
   end
@@ -52,6 +53,7 @@ class MemeController < ApplicationController
         redirect_to user_portfolios_path(current_user.id)
     else
       flash[:notice] = 'Failed to sell'
+      @alert = true
       redirect_to meme_path
     end
   end

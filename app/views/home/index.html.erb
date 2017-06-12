@@ -1,6 +1,7 @@
 <header class="jumbotron" id="meme-text">
  	<p>Welcome to the virtual the Meme Equity Market/Ecommerce ! </p>
 </header>
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1040_RC04/embed_loader.js"></script>
 
 <div class="container">
 
@@ -15,17 +16,29 @@
 		</div>
 	</div>
 	<div class="row" id="top-memes">
-		<% @memes.each do |m| %>
-		<div class="col-md-3 col-sm-6">
+    <% @memes.each do |m| %>
+
+    <div class="col-lg-3 col-sm-4">
 			<div class="thumbnail  frontpage-meme rounded">
-				<%= link_to image_tag(m.img, class:'top-meme'), m%>
 				<div class="caption">
-					<%= m.name %>
-					Points: <%= ((s = m.score) && s > 0) ? '+'+s.to_s : s  %>
-					<%= m.previous_price ? (((tmp = m.price_difference(m.previous_price.price)) && tmp >= 0) ? '+'+tmp.to_s : '-'+tmp.to_s ) : 'n/a'%>
-				</div>
+          <div class="container">
+  					<div class="row row-eq-height">
+              <div class="col-lg-12">
+        				<%= link_to image_tag(m.img, class:'top-meme'), m%>
+                <%= m.name %><br/>
+    					  Points: <%= ((s = m.score) && s > 0) ? '+'+s.to_s : s  %><br/>
+    					  <%= m.previous_price ? (((tmp = m.price_difference(m.previous_price.price)) && tmp >= 0) ? '+'+tmp.to_s : '-'+tmp.to_s ) : 'n/a'%>
+                <script type="text/javascript">
+                  var q = '<%= m.name.to_s %>';
+                  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword": q ,"geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"q=cosmic%20pepe","guestPath":"https://trends.google.com:443/trends/embed/"});
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
 			</div>
 		</div>
+
 		<% end %>
 	</div>
 </div>

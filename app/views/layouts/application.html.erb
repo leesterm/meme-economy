@@ -52,14 +52,18 @@
 </nav>
 
 <!-- Flash messages for Devise -->
-<div class="alert alert-danger alert-fixed">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <%= alert %>
-</div>
-<div class="alert alert-success alert-fixed alert-dismissable">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <%= notice%>
-</div>
+<% if @alert %>
+  <div class="alert alert-danger alert-fixed alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= alert %>
+  </div>
+<% end %>
+<% if @notice %>
+  <div class="alert alert-success alert-fixed alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice%>
+  </div>
+<% end %>
 
 <%= yield %>
 

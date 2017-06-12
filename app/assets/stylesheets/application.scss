@@ -12,10 +12,10 @@
  *
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
-/////
-/////*= require_tree .
-/////*= require_self
  @import "bootstrap";
+ @import "meme";
+ @import "home";
+ @import "portfolios";
 
  body {
      line-height: 1.8;
@@ -42,11 +42,16 @@
    left: 0px;
    z-index: 9999;
    width: 100%;
-   display: none;
  }
  .top-meme{
    width:100%;
  }
+ .row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
 
  #meme-text{
   padding-top: 10px;
