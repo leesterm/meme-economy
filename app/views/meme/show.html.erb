@@ -1,41 +1,65 @@
-<%= javascript_include_tag 'meme', 'data-turbolinks-track' => false%>
-<%= image_tag @meme.img%>
-<h1><%= @meme.name %></h1>
-<div id="meme-score">
-  <h2>Score: <%= @meme.score() %></h2>
-  <%= button_to 'Updoot', upvote_meme_path, disabled: @upvote%>
-  <%= button_to 'Downdoot', downvote_meme_path, disabled: @downvote%>
-</div>
-
-<div id='meme-info'>
-  <% if @prices.size() > 0 %>
-      <ul>
-        <li>Last Price: $<%= @prices.last[1]%> (as of <%= @prices.last[0]%>)</li>
-        <li>Today's Change: </li>
-        <li>Volume: <%= @meme.volume%></li>
-        <li>Bid Size: $<%= @prices.last[1]%>x(some bid amount)</br>
-            <!--<input type="text" value="0.0"></input>-->
-            <%= form_tag(controller: "meme", action: "buy", method: "post", class: "buy-meme") do %>
-              <%= label_tag :buy_amt, 'Buy Amount:'%>
-              <%= submit_tag '+', type: 'button'%>
-              <%= submit_tag '-', type: 'button'%>
-              <%= text_field_tag :buy_amt , 1.0%>
-              <%= submit_tag 'BUY' %>
-            <% end %>
-        </li>
-        <li>Your Current Investments:</br>
-            <input type="text" value="0.0"></input>
-            <button>+</button>
-            <button>-</button>
-            <%= button_to 'SELL', sell_meme_path, form_class: "sell-meme"%>
-        </li>
-      </ul>
-
-      <div id='trend'>
-        <%= line_chart @prices%>
+<!-- TODO: Fix google trends auto retrieve though probably dont wanna do this user side anymore" -->
+<!--<%= javascript_include_tag 'meme', 'data-turbolinks-track' => false%>-->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-1">
+        <div id="meme-score">
+          <h2>Score:<br/><%= @meme.score() %></h2>
+          <%= button_to 'Up', upvote_meme_path, disabled: @upvote %>
+          <%= button_to 'Down', downvote_meme_path, disabled: @downvote%>
+          <!--
+          <%= button_to  upvote_meme_path, disabled: @upvote do%>
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          <% end%>
+          <%= button_to downvote_meme_path, disabled: @downvote do%>
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          <% end%>
+          -->
+        </div>
       </div>
+      <div class="col-lg-3 col-md-4 col-sm-5">
+        <%= image_tag @meme.img, class: 'show-meme'%>
+      </div>
+      <div class="col-lg-7 col-md-6 col-sm-6">
+        <ul class="list-group" id='meme-info'>
+          <li class="list-group-item active"><h1><%= @meme.name %></h1></li>
+          <% if @prices.size() > 0 %>
+              <li class="list-group-item">Last Price: $<%= @prices.last[1]%> (as of <%= @prices.last[0]%>)</li>
+              <li class="list-group-item">Today's Change: </li>
+              <li class="list-group-item">Volume: <%= @meme.volume%></li>
+              <li class="list-group-item">
+                  <p>Bid Size: $<%= @prices.last[1]%>x(some bid amount)</p>
+                  <!--<input type="text" value="0.0"></input>-->
+                  <%= form_tag(controller: "meme", action: "buy", method: "post", id: "buy-meme") do %>
+                    <%= label_tag :buy_amt, 'Buy Amount:'%>
+                    <%= submit_tag '+', type: 'button'%>
+                    <%= submit_tag '-', type: 'button'%>
+                    <%= text_field_tag :buy_amt , 0.0%>
+                    <%= submit_tag 'BUY' %>
+                  <% end %>
+              </li>
+              <li class="list-group-item">
+                  <p>Your Current Investments: (some amount)</p>
+                  <%= form_tag(controller: "meme", action: "sell", method:"post",id: "sell-meme") do %>
+                    <%= label_tag :sell_amt, 'Sell Amount:' %>
+                    <%= submit_tag '+', type: 'button'%>
+                    <%= submit_tag '-', type: 'button'%>
+                    <%= text_field_tag :sell_amt, 0.0 %>
+                    <%= submit_tag 'SELL' %>
+                  <%end%>
+              </li>
+              <li class="list-group-item">
+                <div id='trend'>
+                  <%= line_chart @prices%>
+                </div>
+              </li>
 
-  <% else %>
-    <h1>No Meme info.</h1>
-  <% end %>
+          <% else %>
+            <li class="list-group-item"><h1>No Meme info.</h1></li>
+          <% end %>
+
+        </ul>
+
+      </div>
+    </div>
 </div>

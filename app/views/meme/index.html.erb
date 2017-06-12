@@ -1,4 +1,11 @@
-<h1> All the memes!</h1>
-<% @memes.each do |m| %>
-      <%= link_to image_tag(m.img,class:'meme'), m%>
-<% end %>
+<div class="container">
+  <div class="row">
+    <% @memes.each do |m| %>
+        <div class="col-lg-2">
+          <div class="thumnail">
+            <%= link_to image_tag(m.img,class:'all-meme'), m%>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
