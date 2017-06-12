@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <% @user_holdings.each do |u| %>
+    <% @portfolios.each do |u| %>
     <div class="col-lg-3 col-md-3 col-sm-4 portfolio-meme">
 			<div class="thumbnail">
         <%= link_to image_tag(u.meme.img, class:'top-meme'), u.meme%>

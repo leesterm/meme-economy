@@ -38,7 +38,7 @@ class MemeController < ApplicationController
     meme = Meme.find(params[:id])
     buy_amt = params[:buy_amt].to_f()
     if meme.buy(buy_amt,current_user)
-      redirect_to user_userholdings_path(current_user.id)
+      redirect_to user_portfolios_path(current_user.id)
     else
       flash[:notice] = 'Failed to buy'
       redirect_to meme_path
@@ -49,7 +49,7 @@ class MemeController < ApplicationController
     meme = Meme.find(params[:id])
     sell_amt = params[:sell_amt].to_f()
     if meme.sell(sell_amt,current_user)
-        redirect_to user_userholdings_path(current_user.id)
+        redirect_to user_portfolios_path(current_user.id)
     else
       flash[:notice] = 'Failed to sell'
       redirect_to meme_path

@@ -1,6 +1,6 @@
 class Meme < ActiveRecord::Base
   belongs_to :user
-  has_many :userholdings
+  has_many :portfolios
   has_many :transactionlogs
   has_many :votes
 
@@ -10,8 +10,8 @@ class Meme < ActiveRecord::Base
       cost = price*buy_amt
       if user.balance >= cost
         %% TODO: Make user portfolio have unique entries for each meme option(what if they're different prices though when u buy 1st and 2nd time)%
-        #user_holding = UserHolding.where(user_id: user.id, meme_id: self.id).first_or_create(amt: buy_amt, price: price)
-        user_holding = UserHolding.create(user_id: user.id, meme_id: self.id,amt: buy_amt, buy_price: price)
+        #portfolio =  Portfolio.where(user_id: user.id, meme_id: self.id).first_or_create(amt: buy_amt, price: price)
+        portfolio = Portfolio.create(user_id: user.id, meme_id: self.id,amt: buy_amt, buy_price: price)
         transaction_log = TransactionLog.create(user_id: user.id, meme_id: self.id, amt: buy_amt, price: price, action: 'buy')
         self.volume -= buy_amt
         user.balance -= cost
@@ -25,7 +25,7 @@ class Meme < ActiveRecord::Base
   end
 
   def sell(sell_amt, user)
-    user_meme_volume = UserHolding.where(user_id: user.id, meme_id:self.id).sum("amt");# Should really only be 1 entry anyways
+    user_meme_volume = Portfolio.where(user_id: user.id, meme_id:self.id).sum("amt");# Should really only be 1 entry anyways
     puts "asdfasdfasDF:"+user_meme_volume.to_s
     #if sell_amt <
       #transaction_log = TransactionLog.create(user_id: user.id, meme_id: self.id, amt: buy_amt, price: price, action: 'sell')

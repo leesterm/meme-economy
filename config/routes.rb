@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'user_holdings/index'
-  get 'user_holdings/create'
+  get 'portfolios/index'
+  #get 'portfolios/create'
 
   get 'home/index'
   get 'home/about'
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'users/registrations'}
   # User has meme stocks
   resources :users, only:[] do
-    resources :userholdings, only: [:index,:create], controller: :user_holdings
+    resources :portfolios, only: [:index,:create], controller: :portfolios
     resources :memes, only: [:new, :create], controller: :meme
   end
 

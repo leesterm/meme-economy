@@ -1,4 +1,4 @@
-class UserHolding < ActiveRecord::Base
+class Portfolio < ActiveRecord::Base
   belongs_to :user
   belongs_to :meme
 end

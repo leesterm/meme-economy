@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611014638) do
+ActiveRecord::Schema.define(version: 20170612191522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20170611014638) do
 
   add_index "memes", ["user_id"], name: "index_memes_on_user_id", using: :btree
 
+  create_table "portfolios", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "meme_id"
+    t.integer  "amt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float    "buy_price"
+  end
+
+  add_index "portfolios", ["meme_id"], name: "index_portfolios_on_meme_id", using: :btree
+  add_index "portfolios", ["user_id"], name: "index_portfolios_on_user_id", using: :btree
+
   create_table "transaction_logs", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "meme_id"
@@ -52,18 +64,6 @@ ActiveRecord::Schema.define(version: 20170611014638) do
 
   add_index "transaction_logs", ["meme_id"], name: "index_transaction_logs_on_meme_id", using: :btree
   add_index "transaction_logs", ["user_id"], name: "index_transaction_logs_on_user_id", using: :btree
-
-  create_table "user_holdings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "meme_id"
-    t.integer  "amt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float    "buy_price"
-  end
-
-  add_index "user_holdings", ["meme_id"], name: "index_user_holdings_on_meme_id", using: :btree
-  add_index "user_holdings", ["user_id"], name: "index_user_holdings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
@@ -95,10 +95,10 @@ ActiveRecord::Schema.define(version: 20170611014638) do
 
   add_foreign_key "meme_prices", "memes"
   add_foreign_key "memes", "users"
+  add_foreign_key "portfolios", "memes"
+  add_foreign_key "portfolios", "users"
   add_foreign_key "transaction_logs", "memes"
   add_foreign_key "transaction_logs", "users"
-  add_foreign_key "user_holdings", "memes"
-  add_foreign_key "user_holdings", "users"
   add_foreign_key "votes", "memes"
   add_foreign_key "votes", "users"
 end

@@ -25,7 +25,7 @@
           <%= link_to 'LOGOUT', destroy_user_session_path, class:"nav-link", method: :delete%>
         </li>
         <li class="nav-item">
-          <%= link_to 'VIEW PORTFOLIO', user_userholdings_path(user_id: current_user.id), class: "nav-link"%>
+          <%= link_to 'VIEW PORTFOLIO', user_portfolios_path(user_id: current_user.id), class: "nav-link"%>
         </li>
         <li class="nav-item">
           <%= link_to 'CREATE MEME', new_user_meme_path(user_id: current_user.id), class: "nav-link"%>
