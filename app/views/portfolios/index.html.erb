@@ -9,7 +9,7 @@
     <% @portfolios.each do |u| %>
     <div class="col-lg-3 col-md-3 col-sm-4 portfolio-meme">
 			<div class="thumbnail">
-        <%= link_to image_tag(u.meme.img, class:'top-meme'), u.meme%>
+        <%= link_to image_tag(u.meme.meme_img_url, class:'top-meme'), u.meme%>
         <div class="caption">
           <ul class="list-group">
             <li class="list-group-item active"><%= link_to u.meme.name, u.meme%></li>

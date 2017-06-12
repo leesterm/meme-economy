@@ -3,7 +3,7 @@
     <% @memes.each do |m| %>
         <div class="col-lg-2">
           <div class="thumnail">
-            <%= link_to image_tag(m.img,class:'all-meme'), m%>
+            <%= link_to image_tag(m.meme_img_url,class:'all-meme'), m%>
           </div>
         </div>
     <% end %>

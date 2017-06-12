@@ -4,6 +4,10 @@ class Meme < ActiveRecord::Base
   has_many :transactionlogs
   has_many :votes
 
+  # For Cloudinary
+  attr_accessor :meme_img
+  mount_uploader :meme_img, MemeImgUploader
+
   def buy(buy_amt, user)
     if buy_amt <= self.volume
       price = current_price().price

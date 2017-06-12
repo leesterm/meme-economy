@@ -24,7 +24,7 @@
           <div class="container">
   					<div class="row row-eq-height">
               <div class="col-lg-12">
-        				<%= link_to image_tag(m.img, class:'top-meme'), m%>
+        				<%= link_to image_tag(m.meme_img_url, class:'top-meme'), m%>
                 <%= m.name %><br/>
     					  Points: <%= ((s = m.score) && s > 0) ? '+'+s.to_s : s  %><br/>
     					  <%= m.previous_price ? (((tmp = m.price_difference(m.previous_price.price)) && tmp >= 0) ? '+'+tmp.to_s : '-'+tmp.to_s ) : 'n/a'%>

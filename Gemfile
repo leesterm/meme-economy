@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# Carrierwave add on for cloudinary
+gem 'carrierwave'
+# Cloudinary for image uploads
+gem 'cloudinary'
 # Bootstrap
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 # Devise for users

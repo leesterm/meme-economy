@@ -11,8 +11,8 @@
           <%= f.text_area :description, class: "form-control"%>
         </div>
         <div class="form-group">
-          <%= label_tag(:img, "Upload an image:")%>
-          <%= f.text_field :img, class: "form-control"%>
+          <%= label_tag(:meme_img, "Upload an image:")%>
+          <%= f.file_field :meme_img, class: "form-control"%>
         </div>
           <%= f.submit "Create Meme", class: "btn btn-primary" %>
       <% end %>
