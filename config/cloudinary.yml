@@ -7,8 +7,8 @@ development:
   static_image_support: false
 production:
   cloud_name: meme-economy
-  api_key: <%= Rails.application.secrets.PRO_CLOUDINARY_KEY %>
-  api_secret: <%= Rails.application.secrets.PRO_CLOUDINARY_SECRET %>
+  api_key: <%= ENV["PRO_CLOUDINARY_KEY"] %>
+  api_secret: <%= ENV["PRO_CLOUDINARY_KEY"] %>
   enhance_image_tag: true
   static_image_support: true
 test:
