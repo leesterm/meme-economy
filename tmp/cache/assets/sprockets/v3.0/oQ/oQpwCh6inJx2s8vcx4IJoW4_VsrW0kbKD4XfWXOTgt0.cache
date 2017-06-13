@@ -1,0 +1,5 @@
+I"A(function() {
+  console.log("testing 123");
+
+}).call(this);
+:ET

@@ -1,0 +1,7 @@
+I"c(function() {
+  $(document).ready(function() {
+    return alert("Asd");
+  });
+
+}).call(this);
+:ET

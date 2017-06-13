@@ -1,0 +1,8 @@
+I"Ž(function() {
+  $(document).ready(function() {
+    alert("Asd");
+    return $('#trend').css("border", "3px solid red");
+  });
+
+}).call(this);
+:ET

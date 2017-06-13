@@ -1,19 +1,19 @@
 ---
 development:
   cloud_name: meme-economy
-  api_key: '185964598592431'
-  api_secret: "-j25TpdmSZ8VcLHAdmFVjoo6aUM"
+  api_key: <%= Rails.application.secrets.DEV_CLOUDINARY_KEY %>
+  api_secret: <%= Rails.application.secrets.DEV_CLOUDINARY_SECRET %>
   enhance_image_tag: true
   static_image_support: false
 production:
   cloud_name: meme-economy
-  api_key: '185964598592431'
-  api_secret: "-j25TpdmSZ8VcLHAdmFVjoo6aUM"
+  api_key: <%= Rails.application.secrets.PRO_CLOUDINARY_KEY %>
+  api_secret: <%= Rails.application.secrets.PRO_CLOUDINARY_SECRET %>
   enhance_image_tag: true
   static_image_support: true
 test:
   cloud_name: meme-economy
-  api_key: '185964598592431'
-  api_secret: "-j25TpdmSZ8VcLHAdmFVjoo6aUM"
+  api_key: <%= Rails.application.secrets.DEV_CLOUDINARY_KEY %>
+  api_secret: <%= Rails.application.secrets.DEV_CLOUDINARY_SECRET %>
   enhance_image_tag: true
   static_image_support: false

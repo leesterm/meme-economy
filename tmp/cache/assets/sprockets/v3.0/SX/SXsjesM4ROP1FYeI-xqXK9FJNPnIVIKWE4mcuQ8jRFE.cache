@@ -1,0 +1,7 @@
+I"Œ(function() {
+  $(document).on("turbolinks:load", function() {
+    return $('#trend').css("border", "3px solid red");
+  });
+
+}).call(this);
+:ET

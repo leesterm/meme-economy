@@ -1,0 +1,20 @@
+I"7(function() {
+  $(document).on("turbolinks:load", function() {
+    $('#trend').css("border", "3px solid red");
+    return $.ajax('http://www.google.com/trends/fetchComponent', {
+      type: 'GET',
+      hl: 'en-US',
+      q: ['pepe'],
+      cid: 'TIMESERIES_GRAPH_0',
+      "export": 5,
+      error: function(jqXHR, textStatus, errorThrown) {
+        return $('body').append("AJAX Error: " + textStatus);
+      },
+      success: function(data, textStatus, jqXHR) {
+        return $(body).append("Successful AJAX call: " + data);
+      }
+    });
+  });
+
+}).call(this);
+:ET

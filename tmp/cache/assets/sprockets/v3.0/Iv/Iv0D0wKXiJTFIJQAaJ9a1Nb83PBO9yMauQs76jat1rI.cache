@@ -1,0 +1,5 @@
+I"4(function() {
+  alert("sadf");
+
+}).call(this);
+:ET
