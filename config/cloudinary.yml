@@ -8,7 +8,7 @@ development:
 production:
   cloud_name: meme-economy
   api_key: <%= ENV["PRO_CLOUDINARY_KEY"] %>
-  api_secret: <%= ENV["PRO_CLOUDINARY_KEY"] %>
+  api_secret: <%= ENV["PRO_CLOUDINARY_SECRET"] %>
   enhance_image_tag: true
   static_image_support: true
 test:
