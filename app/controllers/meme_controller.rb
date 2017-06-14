@@ -9,15 +9,13 @@ class MemeController < ApplicationController
   end
 
   def create
-    puts meme_params
-    puts meme_params
-    puts meme_params
-    @meme = Meme.new(meme_params)
-    @meme.up = 1
-    @meme.down = 0
-    @meme.volume = 1000000
-    @meme.user_id = current_user.id
-    @meme.save
+    meme = Meme.new(meme_params)
+    meme.up = 0
+    meme.down = 0
+    meme.volume = 1000000
+    meme.user_id = current_user.id
+    meme.save
+    meme.upvote
     redirect_to root_path
   end
 
@@ -59,34 +57,53 @@ class MemeController < ApplicationController
   end
 
   def upvote
-    if !voted?(true)
-      meme = Meme.find(params[:id])
+    vote_status = voted?
+    meme = Meme.find(params[:id])
+    if vote_status[0] # There exists a users vote for this meme already
+      if vote_status[1].up == true # The existing vote was an upvote
+        meme.downvote
+        vote_status[1].destroy
+      else # The existing vote was a downvote
+        meme.up += 2
+        vote_status[1].up = true
+        meme.save
+        vote_status[1].save
+      end
+    else #There does not exist a users vote for this meme, create it
       vote = Vote.create(user_id: current_user.id, meme_id: params[:id], up: true)
-      meme.upvote()
+      meme.upvote
     end
     redirect_to :back
   end
 
   def downvote
-    if !voted?(false)
-      meme = Meme.find(params[:id])
+    vote_status = voted?
+    meme = Meme.find(params[:id])
+    if vote_status[0] # There exists a users vote for this meme already
+      if vote_status[1].up == false # The existing vote was an downnvote
+        meme.upvote
+        vote_status[1].destroy
+      else # The existing vote was a upvote
+        meme.down += 2
+        vote_status[1].up = false
+        meme.save
+        vote_status[1].save
+      end
+    else #There does not exist a users vote for this meme, create it
       vote = Vote.create(user_id: current_user.id, meme_id: params[:id], up: false)
-      meme.downvote()
+      meme.downvote
     end
     redirect_to :back
   end
 
   private
-    def voted?(v)
+    def voted?
       vote = Vote.find_by(user_id: current_user.id, meme_id: params[:id])
       if vote
-        if vote.up == v
-          return true
-        else
-          vote.destroy
-        end
+        return [true, vote]
+      else
+        return [false, nil]
       end
-      return false
     end
 
     def meme_params()

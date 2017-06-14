@@ -5,8 +5,8 @@
       <div class="col-lg-2 col-md-2 col-sm-1">
         <div id="meme-score">
           <h2>Score:<br/><%= @meme.score() %></h2>
-          <%= button_to 'Up', upvote_meme_path, disabled: @upvote %>
-          <%= button_to 'Down', downvote_meme_path, disabled: @downvote%>
+          <%= button_to 'Up', upvote_meme_path%>
+          <%= button_to 'Down', downvote_meme_path%>
           <!--
           <%= button_to  upvote_meme_path, disabled: @upvote do%>
             <span class="glyphicon glyphicon-arrow-up"></span>
