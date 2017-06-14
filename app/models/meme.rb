@@ -12,20 +12,24 @@ class Meme < ActiveRecord::Base
     if buy_amt <= self.volume
       price = current_price().price
       cost = price*buy_amt
-      if user.balance >= cost
-        %% TODO: Make user portfolio have unique entries for each meme option(what if they're different prices though when u buy 1st and 2nd time)%
-        #portfolio =  Portfolio.where(user_id: user.id, meme_id: self.id).first_or_create(amt: buy_amt, price: price)
-        portfolio = Portfolio.create(user_id: user.id, meme_id: self.id,amt: buy_amt, buy_price: price)
+      if user.balance >= cost # Check if the user has enough money
+        portfolio = Portfolio.find_by(user_id: user.id, meme_id: self.id)
+        if portfolio # User already has a portfolio for this meme, update it
+          portfolio.amt += buy_amt
+          portfolio.total_cost += cost
+          portfolio.save
+        else # Create one since it doesn't exist
+          portfolio = Portfolio.create(user_id: user.id, meme_id: self.id,amt: buy_amt, total_cost: cost)
+        end
         transaction_log = TransactionLog.create(user_id: user.id, meme_id: self.id, amt: buy_amt, price: price, action: 'buy')
         self.volume -= buy_amt
         user.balance -= cost
         self.save
         user.save
-        return true
+        return true # Successful buy
       end
     end
-
-    return false
+    return false # Failed to buy
   end
 
   def sell(sell_amt, user)

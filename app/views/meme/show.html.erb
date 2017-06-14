@@ -30,7 +30,7 @@
               <li class="list-group-item">
                   <p>Bid Size: $<%= @prices.last[1]%>x(some bid amount)</p>
                   <!--<input type="text" value="0.0"></input>-->
-                  <%= form_tag(controller: "meme", action: "buy", method: "post", id: "buy-meme") do %>
+                  <%= form_tag(controller: "meme", action: "buy", method: "post") do %>
                     <%= label_tag :buy_amt, 'Buy Amount:'%>
                     <%= submit_tag '+', type: 'button'%>
                     <%= submit_tag '-', type: 'button'%>
@@ -40,7 +40,7 @@
               </li>
               <li class="list-group-item">
                   <p>Your Current Investments: (some amount)</p>
-                  <%= form_tag(controller: "meme", action: "sell", method:"post",id: "sell-meme") do %>
+                  <%= form_tag(controller: "meme", action: "sell", method:"post") do %>
                     <%= label_tag :sell_amt, 'Sell Amount:' %>
                     <%= submit_tag '+', type: 'button'%>
                     <%= submit_tag '-', type: 'button'%>

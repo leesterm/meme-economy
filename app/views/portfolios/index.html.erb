@@ -13,11 +13,12 @@
         <div class="caption">
           <ul class="list-group">
             <li class="list-group-item active"><%= link_to u.meme.name, u.meme%></li>
-            <li class="list-group-item"><%= u.updated_at%></li>
-            <li class="list-group-item"><%= u.amt%></li>
-            <li class="list-group-item"><%= u.buy_price%></li>
-            <li class="list-group-item"><%= u.meme.current_price.price%></li>
-            <li class="list-group-item"><%= u.meme.price_difference(u.buy_price)%></li>
+            <li class="list-group-item">Last transaction: <%= u.updated_at%></li>
+            <li class="list-group-item">Current Shares: <%= u.amt%></li>
+            <li class="list-group-item">Total Cost: <%= u.total_cost%></li>
+            <li class="list-group-item">Cost per share: <%= u.total_cost/u.amt%></li>
+            <li class="list-group-item">Current stock price: <%= u.meme.current_price.price%></li>
+            <li class="list-group-item">Price gain/loss: <%= u.meme.price_difference(u.total_cost/u.amt)%></li>
           </ul>
         </div>
       </div>
