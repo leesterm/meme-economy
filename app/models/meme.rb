@@ -10,7 +10,7 @@ class Meme < ActiveRecord::Base
 
   def buy(buy_amt, user)
     if buy_amt <= self.volume
-      price = current_price().price
+      price = self.current_price().price
       cost = price*buy_amt
       if user.balance >= cost # Check if the user has enough money
         portfolio = Portfolio.find_by(user_id: user.id, meme_id: self.id)
@@ -33,12 +33,23 @@ class Meme < ActiveRecord::Base
   end
 
   def sell(sell_amt, user)
-    user_meme_volume = Portfolio.where(user_id: user.id, meme_id:self.id).sum("amt");# Should really only be 1 entry anyways
-    puts "asdfasdfasDF:"+user_meme_volume.to_s
-    #if sell_amt <
-      #transaction_log = TransactionLog.create(user_id: user.id, meme_id: self.id, amt: buy_amt, price: price, action: 'sell')
-    total = sell_amt*current_price().price
-
+    portfolio = Portfolio.find_by(user_id: user.id, meme_id:self.id);
+    if portfolio && sell_amt <= portfolio.amt # Check if user has enough to sell
+      money_back = sell_amt*self.current_price.price
+      user.balance += money_back
+      portfolio.total_cost -= money_back
+      portfolio.amt -= sell_amt
+      self.volume += sell_amt
+      transaction_log = TransactionLog.create(user_id: user.id, meme_id: self.id, amt: sell_amt, price: self.current_price.price, action: 'sell')
+      self.save
+      portfolio.save
+      user.save
+      if portfolio.amt == 0 # we erase the portfolio if user no longer has any shares
+        portfolio.destroy
+      end
+      return true # Successful sell
+    end
+    return false # Failed to sell
   end
 
   def upvote
